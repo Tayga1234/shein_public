@@ -1,0 +1,379 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Blandry_shein</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style2.css' %}" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center justify-content-between">
+      
+      <a href="#" class="logo">
+        <img src="{% static 'img/lo.png'%}" alt="{{ accueil.site_name }}" class="img-fluid">
+      </a>
+      <h2 class="logo"><a href="#">{{accueil.site_name}}</a></h2>
+      <!-- Uncomment below if you prefer to use an image logo -->
+    
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">{{topbar.onglet1}}</a></li>
+          <li><a class="nav-link scrollto" href="#evaluation">{{topbar.onglet2}}</a></li>
+          <li><a class="nav-link scrollto " href="#tuto">{{topbar.onglet3}}</a></li>
+          <li><a class="nav-link scrollto" href="#about">{{topbar.onglet4}}</a></li>
+        </ul>                                              
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+
+    <div class="container-fluid" data-aos="fade-up">
+      <div class="row justify-content-center">
+        <div class="col-xl-5 col-lg-6 pt-3 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+          <h1>{{ accueil.accueil_text1 }}</h1>
+          <h2>{{ accueil.accueil_text2 }}</h2>          
+        <div>
+            <a href="#evaluation" class="btn-get-started scrollto">{{ accueil.accueil_bouton }}</a>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="150">
+          <img src="{% static 'img/shop2.png'%}" class="img-fluid animated" alt="">
+
+          {% if date %}
+            <div id="countdown" class="countdown"></div>
+          {% else %}
+            <h2>Vague terminée!</h2>
+            <h3>Une prochaine vague sera bientot disponible.</h3>
+          {% endif %}
+          <script>
+            var countDownDate = new Date("{{ date|date:'M d, Y H:i:s' }}").getTime();
+
+            var countdownFunction = setInterval(function() {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                var countdownElement = document.getElementById("countdown");
+                if (days < 1) {
+                    countdownElement.style.color = "red";
+                    countdownElement.classList.add("blink");
+                } else {
+                    countdownElement.style.color = "black";
+                    countdownElement.classList.remove("blink");
+                }
+
+                countdownElement.innerHTML = days + "j " + hours + "h " + minutes + "m " + seconds + "s ";
+                countdownElement.style.fontSize = "35px";
+
+                if (distance < 0) {
+                  clearInterval(countdownFunction);
+                  countdownElement.innerHTML = "Expiré ! Une nouvelle vague sera bientot disponible.";
+                  countdownElement.classList.remove("blink");
+                  countdownElement.style.fontSize = "20px"; // Adjust the size here
+                  countdownElement.style.fontWeight = "bold";
+                  countdownElement.style.color = "#FF5900";
+                  countdownElement.style.textAlign = "center";
+              }
+            }, 1000);
+          </script>
+
+        </div>
+      </div>
+    </div>
+
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="evaluation" class="about">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2>{{ evaluation.evaluation_title }}</h2>
+          <p>{{ evaluation.evaluation_description }}</p>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="150">
+            
+            <article class="my-3" id="carousel">
+
+              <p class="fst-italic">
+                {{ evaluation.text_demo }}
+              </p>
+              <div>
+                <div class="bd-example-snippet bd-code-snippet"><div class="bd-example m-0 border-0">
+                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                  </div>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" src="{% static 'img/1.png'%}" role="img" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false"></img>
+                      
+                    </div>
+                    <div class="carousel-item">
+                      <img class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" src="{% static 'img/2.png'%}" role="img" aria-label="Placeholder: Second slide" preserveAspectRatio="xMidYMid slice" focusable="false"></img>
+                      
+                    </div>
+                    <div class="carousel-item">
+                      <img class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" src="{% static 'img/3.png'%}" role="img" aria-label="Placeholder: Third slide" preserveAspectRatio="xMidYMid slice" focusable="false"></img>
+                      
+                    </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"  data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"  data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+                  </div></div>
+
+                </div>
+              </article>
+              
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right">
+            <h3>{{ evaluation.text_calcul }}</h3>
+            <p class="fst-italic">
+              {{ evaluation.description_calcul }}
+            </p>
+            <div class="form-container">
+              <img src="{% static 'img/lo.png'%}" alt="" class="logo">
+              
+                <form id="conversion-form">
+
+                  <div class="input-group">
+                      <label for="dollar">Valeur en Dollar :</label>
+                      <input type="number" id="dollar" name="dollar" oninput="convertToCFA()">
+                  </div>
+
+                  <div class="input-group">
+                      <label for="cfa">Valeur en CFA :</label>
+                      <input type="number" id="cfa" name="cfa" oninput="convertToDollar()">
+                  </div>
+                  
+                </form>
+              <p id="result"></p>
+              
+
+          </div>
+
+           <script>
+            function convertToDollar() {
+              const fraisLivraison = 1000;
+              const cfa = document.getElementById('cfa').value;
+              if (cfa) {
+                  const dollar = cfa / 850 - fraisLivraison;
+                  document.getElementById('result').innerText = `Valeur en Dollar : $${dollar.toFixed(2)}`;
+                  document.getElementById('dollar').value = dollar.toFixed(2);
+              } else {
+                  document.getElementById('result').innerText = '';
+                  document.getElementById('dollar').value = '';
+              }
+          }
+
+          function convertToCFA() {
+              const dollar = document.getElementById('dollar').value;
+              let exchangeRate = 850;
+
+              if (dollar && dollar <= 15) {
+                  exchangeRate = 1050;
+              }
+
+              if (dollar) {
+                  const fraisLivraison = 1000;
+                  const cfa = dollar * exchangeRate + fraisLivraison;
+                  const prixTotal = cfa + fraisLivraison;
+
+                  document.getElementById('result').innerText = `Nous offrons nos services avec une livraison gratuite.`;
+                  document.getElementById('cfa').value = cfa.toFixed(2);
+                  document.getElementById('prixtotal').innerText = `Total : ${prixTotal.toFixed(2)} FCFA`;
+              } else {
+                  document.getElementById('result').innerText = '';
+                  document.getElementById('cfa').value = '';
+                  document.getElementById('prixtotal').innerText = '';
+              }
+          }
+
+          </script>
+
+
+        </div>
+        
+      </div>
+      
+      <div class="btn-container text-center">
+        <button type="button" class="btn btn-secondary btn-lg">Commander</button>
+    </div>
+    </section>
+
+
+<!-- ======= Frequently Asked Questions Section ======= -->
+    <section id="tuto" class="faq">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Tutoriels</h2>
+          <p>Découvrez nos tutoriels détaillés pour vous guider à travers nos services. Vous y trouverez des explications claires et des démonstrations pratiques pour vous aider à mieux utiliser nos fonctionnalités et à répondre à vos questions fréquentes.</p>        
+        </div>
+
+        <div class="faq-list">
+          <ul>
+            <li data-aos="fade-up" data-aos="fade-up" data-aos-delay="100">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">Comment composer son panier Shein? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
+                <p></p>
+                <div class="video-container">
+                  <iframe src="{% static 'video/m0.mp4' %}" frameborder="0" allowfullscreen></iframe>
+                </div>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="200">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Comment envoyer le lien de son panier Shein? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+                <p></p>
+                <div class="video-container">
+                  <iframe src="{% static 'video/m1.mp4' %}" frameborder="0" allowfullscreen></iframe>
+                </div>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="300">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">Comment faire l'évaluation de son panier Shein? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
+                <p></p>
+                <div class="video-container">
+                  <iframe src="https://www.youtube.com/embed/video-id" frameborder="0" allowfullscreen></iframe>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+<!-- End Frequently Asked Questions Section -->
+
+        <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="150">
+            <img src="{% static 'img/about.jpg' %}" class="img-fluid" alt="À propos de nous">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right">
+            <h3>Gestion complète de vos commandes Shein</h3>
+            <p class="fst-italic">
+              Nous nous occupons de tout le processus : de l'achat de vos articles sur Shein jusqu'à leur livraison, en assurant qualité et sécurité. Grâce à notre service, vous pouvez éviter les frais de douane et autres frais supplémentaires.
+            </p>
+            <ul>
+              <li><i class="bi bi-check-circle"></i> Prise en charge totale des commandes passées sur Shein.</li>
+              <li><i class="bi bi-check-circle"></i> Gestion rigoureuse pour garantir la conformité de chaque article.</li>
+              <li><i class="bi bi-check-circle"></i> Livraison rapide et sécurisée, pour que vos achats arrivent en parfait état.</li>
+            </ul>
+            <a href="#" class="read-more">En savoir plus <i class="bi bi-long-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2>Contactez-nous</h2>
+          <p>Suivez-nous sur nos réseaux sociaux :</p>
+        </div>
+
+        <div class="social-links" data-aos="fade-up" data-aos-delay="100">
+          <a href="https://whatsapp.com" class="whatsapp" target="_blank"><i class="bi bi-whatsapp"></i></a>
+          <a href="https://facebook.com" class="facebook" target="_blank"><i class="bi bi-facebook"></i></a>
+          <a href="https://twitter.com" class="twitter" target="_blank"><i class="bi bi-twitter"></i></a>
+          <a href="https://instagram.com" class="instagram" target="_blank"><i class="bi bi-instagram"></i></a>
+          <a href="https://linkedin.com" class="linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        
+        <p class="col-md-4 mb-0 text-body-secondary">&copy; 2020 Blandry_shein</p>
+
+        <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+        </a>
+
+        <ul class="nav col-md-4 justify-content-end">
+          <li class="nav-item"><a href="#hero" class="nav-link px-2 text-body-secondary">Accueil</a></li>
+          <li class="nav-item"><a href="#evaluation" class="nav-link px-2 text-body-secondary">Evaluation</a></li>
+          <li class="nav-item"><a href="#tuto" class="nav-link px-2 text-body-secondary">Tutoriels</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link px-2 text-body-secondary">A propos</a></li>
+        </ul>
+        
+      </footer>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+
+
+  <!-- Vendor JS Files -->
+    <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
+    <script src="{% static 'vendor/aos/aos.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="{% static 'js/cheatsheet.js' %}"></script>
+
+</body>
+
+</html> 

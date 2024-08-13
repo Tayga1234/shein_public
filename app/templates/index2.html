@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page avec Icônes et Questions</title>
+    <link href="{% static 'css/style2.css' %}" rel="stylesheet">
+    <!-- Lien vers FontAwesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="icon-box">
+            <div class="icon">
+                <i class="fas fa-home"></i>
+            </div>
+            <div class="question">
+                <p>Quelle est la question 1 ?</p>
+            </div>
+        </div>
+        <div class="icon-box">
+            <div class="icon">
+                <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="question">
+                <p>Quelle est la question 2 ?</p>
+            </div>
+        </div>
+        <div class="icon-box">
+            <div class="icon">
+                <i class="fas fa-cog"></i>
+            </div>
+            <div class="question">
+                <p>Quelle est la question 3 ?</p>
+            </div>
+        </div>
+        <div class="icon-box">
+            <div class="icon">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div class="question">
+                <p>Quelle est la question 4 ?</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
